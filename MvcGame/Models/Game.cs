@@ -7,15 +7,13 @@ namespace MvcGame.Models;
 public class Game
 {
     public int Id { get; set; }
-    [StringLength(60, MinimumLength = 3)]
-    [Required]
-    public string? Player { get; set; }
+    public int Item { get; set; }
     [StringLength(60, MinimumLength = 2)]
     [Required]
-    public string? Character { get; set; }
-    [Range(1, 30)]
-    public int Level { get; set; }
+    public string? Category { get; set; }
+    [StringLength(60, MinimumLength = 2)]
+    [Required]
+    public string? User { get; set; }
     [Range(0, 99999)]
-    public int Gold { get; set; }
-    public string? Result { get; set; }
+    public int Cost { get; set; }
 }

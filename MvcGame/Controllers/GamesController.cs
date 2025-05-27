@@ -20,22 +20,38 @@ namespace MvcGame.Controllers
         }
 
         // GET: Games
-        public async Task<IActionResult> Index(string searchString)
+        // GET: Movies
+        public async Task<IActionResult> Index(string ItemsCategory, string searchString)
         {
             if (_context.Game == null)
             {
-                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+                return Problem("Entity set 'MvcGameContext.Game'  is null.");
             }
 
-            var games = from m in _context.Game
+            // Use LINQ to get list of genres.
+            IQueryable<string> genreQuery = from m in _context.Game
+                                            orderby m.Category
+                                            select m.Category;
+            var items = from m in _context.Game
                          select m;
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
-                games = games.Where(s => s.Player!.ToUpper().Contains(searchString.ToUpper()));
+                items = items.Where(s => s.User!.ToUpper().Contains(searchString.ToUpper()));
             }
 
-            return View(await games.ToListAsync());
+            if (!string.IsNullOrEmpty(ItemsCategory))
+            {
+                items = items.Where(x => x.Category == ItemsCategory);
+            }
+
+            var itemCategoryVM = new ItemGenreViewModel
+            {
+                Categories = new SelectList(await genreQuery.Distinct().ToListAsync()),
+                Items = await items.ToListAsync()
+            };
+
+            return View(itemCategoryVM);
         }
 
         // GET: Games/Details/5
@@ -67,7 +83,7 @@ namespace MvcGame.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Player,Character,Level,Gold,Result")] Game game)
+        public async Task<IActionResult> Create([Bind("Id,Item,Category,User,Cost")] Game game)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +115,7 @@ namespace MvcGame.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Player,Character,Level,Gold,Result")] Game game)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Item,Category,User,Cost")] Game game)
         {
             if (id != game.Id)
             {

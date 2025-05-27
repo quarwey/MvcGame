@@ -16,10 +16,10 @@ namespace MvcGame.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Player = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Character = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Level = table.Column<int>(type: "int", nullable: false),
-                    Gold = table.Column<int>(type: "int", nullable: false)
+                    Item = table.Column<int>(type: "int", nullable: false),
+                    Category = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    User = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    Cost = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

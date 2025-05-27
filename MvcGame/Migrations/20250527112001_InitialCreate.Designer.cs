@@ -11,8 +11,8 @@ using MvcGame.Data;
 namespace MvcGame.Migrations
 {
     [DbContext(typeof(MvcGameContext))]
-    [Migration("20250526200903_Result")]
-    partial class Result
+    [Migration("20250527112001_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,20 +32,21 @@ namespace MvcGame.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Character")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
-                    b.Property<int>("Gold")
+                    b.Property<int>("Cost")
                         .HasColumnType("int");
 
-                    b.Property<int>("Level")
+                    b.Property<int>("Item")
                         .HasColumnType("int");
 
-                    b.Property<string>("Player")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Result")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("User")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.HasKey("Id");
 

@@ -1,59 +1,58 @@
-﻿@model IEnumerable<MvcGame.Models.Game>
+﻿@model MvcGame.Models.ItemGenreViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Games</h1>
+<h1>Объявления</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Создать</a>
 </p>
 <form asp-controller="Games" asp-action="" method="get">
     <p>
-        <label>Player: <input type="text" name="SearchString" /></label>
-        <input type="submit" value="Filter" />
+
+        <select asp-for="ItemsCategories" asp-items="Model.Categories">
+            <option value="">All</option>
+        </select>
+
+        <label>Пользователь: <input type="text" name="SearchString" /></label>
+        <input type="submit" value="Искать" />
     </p>
 </form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Player)
+                @Html.DisplayNameFor(model => model.Items![0].Item)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Character)
+                @Html.DisplayNameFor(model => model.Items![0].Category)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Level)
+                @Html.DisplayNameFor(model => model.Items![0].User)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Gold)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Result)
+                @Html.DisplayNameFor(model => model.Items![0].Cost)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Items!) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Player)
+                @Html.DisplayFor(modelItem => item.Item)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Character)
+                @Html.DisplayFor(modelItem => item.Category)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Level)
+                @Html.DisplayFor(modelItem => item.User)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Gold)
+                @Html.DisplayFor(modelItem => item.Cost)
             </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Result)
-                </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

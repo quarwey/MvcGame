@@ -22,35 +22,31 @@ public static class SeedData
             context.Game.AddRange(
                 new Game
                 {
-                    Player = "Yatoro",
-                    Character = "Terror Blade",
-                    Level = 23,
-                    Gold = 20400,
-                    Result = "Win"
+                    Item = 1,
+                    Category = "Техника",
+                    User = "Михаил",
+                    Cost = 14000
                 },
                 new Game
                 {
-                    Player = "quarwey",
-                    Character = "Hoodwink",
-                    Level = 30,
-                    Gold = 45000,
-                    Result = "Win"
+                    Item = 2,
+                    Category = "Книги",
+                    User = "Виктор",
+                    Cost = 500
                 },
                 new Game
                 {
-                    Player = "Ame",
-                    Character = "Anti Mage",
-                    Level = 20,
-                    Gold = 15000,
-                    Result = "Lose"
+                    Item = 3,
+                    Category = "Продукты",
+                    User = "Дмитрий",
+                    Cost = 150
                 },
                 new Game
                 {
-                    Player = "Zhenya",
-                    Character = "Dark Willow",
-                    Level = 1,
-                    Gold = 0,
-                    Result = "Lose"
+                    Item = 4,
+                    Category = "Техника",
+                    User = "Олег",
+                    Cost = 50000
                 }
             );
             context.SaveChanges();
