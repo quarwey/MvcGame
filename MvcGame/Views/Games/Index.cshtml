@@ -13,7 +13,7 @@
     <p>
 
         <select asp-for="ItemsCategories" asp-items="Model.Categories">
-            <option value="">All</option>
+            <option value="">Все</option>
         </select>
 
         <label>Пользователь: <input type="text" name="SearchString" /></label>
@@ -54,9 +54,9 @@
                 @Html.DisplayFor(modelItem => item.Cost)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Детали</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
             </td>
         </tr>
 }

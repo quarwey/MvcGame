@@ -15,5 +15,7 @@ namespace MvcGame.Data
         }
 
         public DbSet<MvcGame.Models.Game> Game { get; set; } = default!;
+        public DbSet<MvcGame.Models.Company> Company { get; set; } = default!;
+        public DbSet<MvcGame.Models.User> User { get; set; } = default!;
     }
 }

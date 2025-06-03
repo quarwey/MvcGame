@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MvcGame.Data;
 
@@ -10,9 +11,11 @@ using MvcGame.Data;
 namespace MvcGame.Migrations
 {
     [DbContext(typeof(MvcGameContext))]
-    partial class MvcGameContextModelSnapshot : ModelSnapshot
+    [Migration("20250603150841_CreateTable")]
+    partial class CreateTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
